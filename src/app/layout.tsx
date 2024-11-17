@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
+import LoadingProvider from "@/components/loadingProvider";
 
 export const metadata: Metadata = {
   title: "Parkeer",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 const sora = Sora({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export default function RootLayout({
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sora.className}  antialiased`}>{children}</body>
+      <body className={`${sora.className}  antialiased`}>
+        <LoadingProvider>{children}</LoadingProvider>
+      </body>
     </html>
   );
 }
