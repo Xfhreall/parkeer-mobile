@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import * as z from "zod";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Form,
@@ -21,14 +22,22 @@ import google from "@/public/assets/google.svg";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 const formSchema = z.object({
-  email: z.string().email("Email tidak valid"),
-  password: z.string().min(6, "Kata sandi minimal 6 karakter"),
+  email: z
+    .string()
+    .email("Email tidak valid")
+    .endsWith("ub.ac.id", "Masukkan email UB anda"),
+  password: z.string().min(8, "Kata sandi minimal 8 karakter"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginStatus, setLoginStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
+  const [errorMessage, setErrorMessage] = useState("");
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,9 +49,27 @@ export default function Login() {
 
   const { formState } = form;
   const isValid = formState.isValid;
+  const router = useRouter();
 
   function onSubmit(values: FormValues) {
-    console.log(values);
+    const storedData = localStorage.getItem("registrationData");
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      if (
+        parsedData.email === values.email &&
+        parsedData.password === values.password
+      ) {
+        router.push("/parkeer");
+        setErrorMessage("");
+        console.log("Login successful");
+      } else {
+        setLoginStatus("error");
+        setErrorMessage("Email atau password salah");
+      }
+    } else {
+      setLoginStatus("error");
+      setErrorMessage("Akun tidak terdaftar");
+    }
   }
 
   return (
@@ -51,7 +78,7 @@ export default function Login() {
         className="w-full max-w-sm space-y-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 5 }}
+        transition={{ duration: 1, delay: 0.5 }}
       >
         <div className="flex justify-center -translate-y-16">
           <Image
@@ -115,6 +142,12 @@ export default function Login() {
                 </FormItem>
               )}
             />
+            {loginStatus === "success" && (
+              <p className="text-green-500 text-sm mt-2">Login berhasil!</p>
+            )}
+            {loginStatus === "error" && (
+              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+            )}
 
             <div className="flex justify-end">
               <Link

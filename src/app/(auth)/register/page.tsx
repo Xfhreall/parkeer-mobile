@@ -27,9 +27,12 @@ const formSchema = z
     nim: z.string().min(5, {
       message: "NIM harus diisi dengan benar.",
     }),
-    email: z.string().email({
-      message: "Email UB harus diisi dengan benar.",
-    }),
+    email: z
+      .string()
+      .email({
+        message: "Email UB harus diisi dengan benar.",
+      })
+      .endsWith("ub.ac.id"),
     password: z.string().min(8, {
       message: "Kata sandi minimal 8 karakter.",
     }),
@@ -58,6 +61,15 @@ export default function Register() {
   const isValid = formState.isValid;
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // Save registration data to local storage
+    const registrationData = {
+      fullName: values.fullName,
+      nim: values.nim,
+      email: values.email,
+      password: values.password,
+    };
+    localStorage.setItem("registrationData", JSON.stringify(registrationData));
+    console.log(registrationData);
     console.log(values);
     setShowSuccessModal(true);
   }

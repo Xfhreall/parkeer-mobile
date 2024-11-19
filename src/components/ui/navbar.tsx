@@ -15,7 +15,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 w-full h-20 bg-white rounded-t-3xl flex justify-center items-center shadow-[0_-6px_6px_-1px_rgba(0,0,0,0.1)]">
+    <nav className="fixed bottom-0 z-50 w-full h-20 bg-white rounded-t-3xl flex justify-center items-center shadow-[0_-6px_6px_-1px_rgba(0,0,0,0.1)]">
       <ul className="flex gap-24 justify-center w-full text-xs">
         {navItems.map((item) => {
           const isActive =

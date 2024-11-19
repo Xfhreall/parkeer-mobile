@@ -16,6 +16,7 @@ const config: Config = {
           foreground: "hsl(var(--primary-foreground))",
         },
         blue: "#0066FF",
+        blueLight: "#76ADFF",
         success: "#4AC935",
         successMessage: "#39CE18",
         foreground: "hsl(var(--foreground))",
