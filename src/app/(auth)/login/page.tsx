@@ -46,7 +46,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center mx-6 relative">
+    <div className="flex h-[100dvh] flex-col items-center justify-center mx-6 relative">
       <motion.div
         className="w-full max-w-sm space-y-2"
         initial={{ opacity: 0 }}
@@ -128,8 +128,9 @@ export default function Login() {
               type="submit"
               variant="secondary"
               className={`w-full py-[26px] text-gray-800 font-light disabled:opacity-50 disabled:cursor-not-allowed ${
-                isValid ? "bg-blue text-neutral-200" : "bg-gray-300 text-white"
+                isValid ? "bg-blue text-neutral-200" : "bg-gray-500 text-white"
               }`}
+              disabled={!isValid}
             >
               Masuk
             </Button>
@@ -149,6 +150,7 @@ export default function Login() {
           <Button
             variant="outline"
             className="w-full relative py-6 text-neutral-600 rounded-xl font-light border-neutral-800 border"
+            onClick={() => alert("coming soon...")}
           >
             <Image
               src={google}
