@@ -19,7 +19,7 @@ const TopNav = () => {
   }, []);
   const router = useRouter();
   return (
-    <div className="p-4 flex h-32 shadow-md items-end justify-between bg-white z-50 sticky">
+    <div className="p-4 flex h-24 shadow-md items-end justify-between bg-white z-50 sticky">
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full overflow-hidden border-blue border-2">
           <Image
