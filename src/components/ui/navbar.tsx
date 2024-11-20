@@ -3,15 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MapPinned, MessageSquareMoreIcon, UserCogIcon } from "lucide-react";
+import { Icon } from "@iconify/react";
 
 const Navbar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Parkeer", icon: MapPinned, href: "/parkeer" },
-    { name: "Lapor", icon: MessageSquareMoreIcon, href: "/lapor" },
-    { name: "Saya", icon: UserCogIcon, href: "/saya" },
+    { name: "Parkeer", icon: "solar:point-on-map-linear", href: "/parkeer" },
+    { name: "Lapor", icon: "iconoir:message-text", href: "/lapor" },
+    { name: "Saya", icon: "mingcute:user-setting-line", href: "/profile" },
   ];
 
   return (
@@ -29,7 +29,12 @@ const Navbar = () => {
                     isActive ? "text-blue" : "text-neutral-300"
                   }`}
                 >
-                  <item.icon size={26} className="mx-auto" />
+                  <Icon
+                    icon={item.icon}
+                    width={26}
+                    height={26}
+                    className="mx-auto"
+                  />
                   <p>{item.name}</p>
                 </div>
               </Link>

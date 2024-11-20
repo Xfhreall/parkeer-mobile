@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
+import Wm from "@/components/wm";
 
 export const metadata: Metadata = {
   title: "Parkeer",
@@ -20,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sora.className}  antialiased`}>{children}</body>
+      <body className={`${sora.className}  antialiased`}>
+        <div className="relative">
+          <Wm />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
