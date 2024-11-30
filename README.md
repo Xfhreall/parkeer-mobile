@@ -12,11 +12,11 @@
 
 5. [Framer Motion](https://www.framer.com/motion/)
 
-7. ‌[React Hook Form](https://www.react-hook-form.com/)
+6. ‌[React Hook Form](https://www.react-hook-form.com/)
 
 ## Getting Started
 
-Pertama clone repo Braciate-fe:
+Pertama clone repo parkeer-mobile:
 
 ```bash
 
