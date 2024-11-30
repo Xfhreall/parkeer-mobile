@@ -24,6 +24,14 @@ git clone https://github.com/Xfhreall/parkeer-mobile.git
 
 ```
 
+Kemudian pindah ke direktori parkeer-mobile:
+
+```bash
+
+cd ./parkeer-mobile
+
+```
+
 Kemudian install depedencies:
 
 ```bash
